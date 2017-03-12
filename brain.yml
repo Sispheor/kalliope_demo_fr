@@ -1,0 +1,18 @@
+---
+  - name: "default-synapse"
+    neurons:
+      - say:
+          message: "Je n'ai pas compris votre réponse"
+    signals:
+      - order: "default synapse order"
+
+
+  - includes:
+      - brains/find_phone.yml
+      - brains/gmail.yml
+      - brains/morning.yml
+      - brains/nas_control.yml
+      - brains/raspidrink.yml
+      - brains/rolling_shutter.yml
+      - brains/twitter.yml
+      - brains/wikipedia.yml

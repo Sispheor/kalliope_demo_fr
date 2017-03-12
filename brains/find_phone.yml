@@ -1,0 +1,9 @@
+- name: "find-my-phone"
+  neurons:
+    - say:
+        message: "Je fais sonner votre téléphone, monsieur"
+    - tasker_autoremote:
+        key: "{{tasker_key}}"
+        message: "lost"
+  signals:
+    - order: "où est mon téléphone"

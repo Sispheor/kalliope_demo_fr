@@ -1,0 +1,29 @@
+# raspidrink is cocktail maker machine
+# https://github.com/Sispheor/raspidrink_ui
+# https://github.com/Sispheor/raspidrink_api
+
+- name: "raspidrink-dialog"
+  neurons:
+    - say:
+        message: "Est ce qu'un martini vous ferez plaisir ?"
+    - neurotransmitter:
+        links:
+          - synapse: "raspdrink"
+            answers:
+                - "absolument"
+                - "oui"
+                - "oui merci"
+                - "parfait"
+        default: "default-synapse"
+  signals:
+    - order: "j'ai soif"
+
+
+- name: "raspdrink"
+  neurons:
+    - say:
+        message: "Je vous le prépare"
+    - shell:
+        cmd: "curl -i -X POST  http://192.168.0.27:8000/run_cocktail/2/ -F 'confirm_checkbox=True'"
+  signals:
+    - order: "run raspeedrink"

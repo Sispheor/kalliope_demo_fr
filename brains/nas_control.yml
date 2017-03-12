@@ -1,0 +1,64 @@
+
+- name: "wake-my-PC"
+  neurons:
+    - wake_on_lan:
+        mac_address: "bc:ae:c5:b3:e4:4a"
+    - say:
+        message: "Très bien, votre ordinateur vient de démarrer"
+  signals:
+    - order: "allume le médiacenter"
+    - order: "allume le mediacenter"
+
+# following synapses call a simple API installated on Ubuntu NAS
+# https://github.com/Sispheor/nas-control
+- name: "start-steam"
+  neurons:
+    - uri:
+        url: "http://192.168.0.17:8000/app"
+        method: POST
+        headers:
+        Content-Type: 'application/json'
+        user: "{{nas_control_username}}"
+        password: "{{nas_control_password}}"
+        data_from_file: "json/stop_kodi.json"
+
+    - uri:
+        url: "http://192.168.0.17:8000/app"
+        method: POST
+        headers:
+        Content-Type: 'application/json'
+        user: "{{nas_control_username}}"
+        password: "{{nas_control_password}}"
+        data_from_file: "json/start_steam.json"
+    - say:
+        message: "Lancement de Stime en cours, monsieur"
+  signals:
+    - order: "lance Steam"
+
+- name: "start-kodi"
+  neurons:
+    - uri:
+        url: "http://192.168.0.17:8000/app"
+        method: POST
+        headers:
+        Content-Type: 'application/json'
+        user: "{{nas_control_username}}"
+        password: "{{nas_control_password}}"
+        data_from_file: "json/stop_steam.json"
+    - uri:
+        url: "http://192.168.0.17:8000/app"
+        method: POST
+        headers:
+        Content-Type: 'application/json'
+        user: "{{nas_control_username}}"
+        password: "{{nas_control_password}}"
+        data_from_file: "json/start_kodi.json"
+    - say:
+        message: "Lancement du médiaplayeur, monsieur"
+  signals:
+    - order: "lance Codi"
+    - order: "lance Cody"
+    - order: "lance codi"
+    - order: "lance cody"
+    - order: "lance kodi"
+    - order: "lance Kodi"

@@ -1,0 +1,19 @@
+- name: "close-rolling-shutter"
+  signals:
+    - order: "ferme les volets"
+  neurons:
+    - uri:
+        url: "http://192.168.0.22:5000/fermeture?password={{rolling_shutter_password}}"
+        method: "POST"
+    - say:
+        message: "Fermeture en cours, monsieur"
+
+- name: "open-rolling-shutter"
+  signals:
+    - order: "ouvre le volets"
+  neurons:
+    - uri:
+        url: "http://192.168.0.22:5000/ouverture?password={{rolling_shutter_password}}"
+        method: POST
+    - say:
+        message: "Ouverture en cours, monsieur"
