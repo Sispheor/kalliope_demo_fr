@@ -7,7 +7,6 @@
         access_token_secret: "{{twitter_access_token_secret}}"
         say_template:
         - "Le message a bien été poster sur Twitter, monsieur"
-        args:
-          - tweet
+        tweet: "{{ tweet }}"
   signals:
     - order: "envoie sur Twitter {{ tweet }}"

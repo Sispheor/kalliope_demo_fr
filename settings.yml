@@ -65,24 +65,20 @@ text_to_speech:
 
 
 # ---------------------------
-# Wake up answers
+# Hooks
 # ---------------------------
-# When Kalliope detect the hotword/trigger, he will select randomly a phrase in the following list
-# to notify the user that he's listening for orders
-random_wake_up_answers:
-  - "Oui monsieur?"
-  - "Je vous écoute"
-  - "Monsieur?"
-  - "Que puis-je faire pour vous?"
-  - "J'écoute"
-  - "Oui?"
-
-# You can play a sound when Kalliope detect the hotword/trigger instead of saying something from
-# the `random_wake_up_answers`. To active the 'random_wake_up_sounds' you must comment out the 'random_wake_up_answers'
-# The file must be .wav or .mp3 format.
-random_wake_up_sounds:
-  - "trigger/dong.wav"
-
+hooks:
+  on_start:
+  on_waiting_for_trigger:
+  on_triggered: "on-triggered-synapse"
+  on_start_listening: "on-start-listening"
+  on_stop_listening:
+  on_order_found:
+  on_order_not_found: "default-synapse"
+  on_mute:
+  on_unmute:
+  on_start_speaking:
+  on_stop_speaking:
 
 # ---------------------------
 # Rest API
@@ -93,12 +89,6 @@ rest_api:
   password_protected: True
   login: admin
   password: secret
-
-# ---------------------------
-# Default Synapse
-# ---------------------------
-# Specify an optional default synapse response in case your order is not found.
-default_synapse: "default-synapse"
 
 # ---------------------------
 # resource directory path
